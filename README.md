@@ -1,0 +1,1 @@
+profit, resultado_4 = Name: profit, Length: 2253, dtype: float64
