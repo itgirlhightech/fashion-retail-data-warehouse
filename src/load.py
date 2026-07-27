@@ -1,4 +1,15 @@
-from database import engine
+import os
+import sys
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "warehouse"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "database"))
+
+from extract import extract
+from transform import transform
+from dimensions import dim_customer, dim_product, dim_channel, dim_date
+from facts import fact_sales
+from database import engine 
 
 def load(
     dim_customer,
@@ -42,6 +53,8 @@ def load(
         index=False
     )
 
+if __name__ == "__main__":
+    load(dim_customer, dim_product, dim_channel, dim_date, fact_sales)
+    print("Tabelas carregadas com sucesso no PostgreSQL")
 
-print("Tabela carregadas com sucesso no PostgreSQL")
 
