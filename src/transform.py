@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from extract import extract
+from src.extract import extract
 
 datasets = extract()
 
@@ -36,3 +36,8 @@ def transform(datasets):
     resultado_4["day"] = resultado_4["sale_date"].dt.day
 
     return resultado_4
+
+if __name__ == "__main__":
+    datasets = extract()
+    resultado_4 = transform(datasets)
+    print(resultado_4.shape)
