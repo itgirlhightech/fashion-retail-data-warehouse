@@ -83,7 +83,6 @@ E --> F
 
 F --> G[Apache Airflow]
 
-G --> H[SQL Reports]
 ```
 ```mermaid
 erDiagram
