@@ -1,0 +1,47 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <!-- background -->
+  <rect width="800" height="600" fill="#0f1117"/>
+
+  <!-- connecting lines (drawn first, so boxes sit on top) -->
+  <line x1="400" y1="300" x2="400" y2="120" stroke="#5b6472" stroke-width="2"/>
+  <line x1="400" y1="300" x2="400" y2="480" stroke="#5b6472" stroke-width="2"/>
+  <line x1="400" y1="300" x2="200" y2="300" stroke="#5b6472" stroke-width="2"/>
+  <line x1="400" y1="300" x2="600" y2="300" stroke="#5b6472" stroke-width="2"/>
+
+  <!-- key labels on the lines -->
+  <text x="415" y="205" fill="#9aa4b2" font-size="13">product_id</text>
+  <text x="415" y="405" fill="#9aa4b2" font-size="13">customer_id</text>
+  <text x="235" y="290" fill="#9aa4b2" font-size="13">channel</text>
+  <text x="500" y="290" fill="#9aa4b2" font-size="13">sale_date</text>
+
+  <!-- FACT_SALES (center) -->
+  <rect x="310" y="255" width="180" height="90" rx="10" fill="#e0a458" stroke="#b97f34" stroke-width="2"/>
+  <text x="400" y="290" fill="#1a1a1a" font-size="18" font-weight="bold" text-anchor="middle">FACT_SALES</text>
+  <text x="400" y="312" fill="#3a2c14" font-size="12" text-anchor="middle">quantity · item_total</text>
+  <text x="400" y="328" fill="#3a2c14" font-size="12" text-anchor="middle">cost_total · profit</text>
+
+  <!-- DIM_PRODUCT (top) -->
+  <rect x="310" y="40" width="180" height="80" rx="10" fill="#4f83cc" stroke="#356099" stroke-width="2"/>
+  <text x="400" y="72" fill="#ffffff" font-size="16" font-weight="bold" text-anchor="middle">DIM_PRODUCT</text>
+  <text x="400" y="94" fill="#e6eefc" font-size="12" text-anchor="middle">category · brand</text>
+  <text x="400" y="110" fill="#e6eefc" font-size="12" text-anchor="middle">catalog_price</text>
+
+  <!-- DIM_CUSTOMER (bottom) -->
+  <rect x="310" y="480" width="180" height="80" rx="10" fill="#4f83cc" stroke="#356099" stroke-width="2"/>
+  <text x="400" y="512" fill="#ffffff" font-size="16" font-weight="bold" text-anchor="middle">DIM_CUSTOMER</text>
+  <text x="400" y="534" fill="#e6eefc" font-size="12" text-anchor="middle">age_range · country</text>
+  <text x="400" y="550" fill="#e6eefc" font-size="12" text-anchor="middle">signup_date</text>
+
+  <!-- DIM_CHANNEL (left) -->
+  <rect x="40" y="260" width="160" height="80" rx="10" fill="#4f83cc" stroke="#356099" stroke-width="2"/>
+  <text x="120" y="292" fill="#ffffff" font-size="16" font-weight="bold" text-anchor="middle">DIM_CHANNEL</text>
+  <text x="120" y="314" fill="#e6eefc" font-size="12" text-anchor="middle">description</text>
+
+  <!-- DIM_DATE (right) -->
+  <rect x="600" y="260" width="160" height="80" rx="10" fill="#4f83cc" stroke="#356099" stroke-width="2"/>
+  <text x="680" y="292" fill="#ffffff" font-size="16" font-weight="bold" text-anchor="middle">DIM_DATE</text>
+  <text x="680" y="314" fill="#e6eefc" font-size="12" text-anchor="middle">year · month · quarter</text>
+
+  <!-- title -->
+  <text x="400" y="590" fill="#9aa4b2" font-size="13" text-anchor="middle">Star Schema — fashion-retail-data-warehouse</text>
+</svg>
