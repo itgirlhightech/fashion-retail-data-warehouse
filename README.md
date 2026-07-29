@@ -26,7 +26,8 @@ The objective is to simulate a real-world retail analytics environment while app
 - PostgreSQL
 - Apache Airflow
 - SQL
-- Mermaid
+- SQLAlchemy
+- Python-dotenv
 - Git & GitHub
 
 ---
@@ -60,6 +61,46 @@ fashion-retail-data-warehouse/
 ├── README.md
 └── requirements.txt
 ```
+
+---
+
+
+## How to Run
+
+```bash
+# 1. Clone the repository and set up the virtual environment
+git clone https://github.com/itgirlhightech/fashion-retail-data-warehouse.git
+cd fashion-retail-data-warehouse
+python -m venv airflow_venv
+source airflow_venv/bin/activate
+pip install -r requirements.txt
+
+# 2. Set up environment variables
+# Create a .env file in the project root with:
+# DB_USER=your_user
+# DB_PASSWORD=your_password
+# DB_HOST=localhost
+# DB_PORT=5432
+# DB_NAME=your_database_name
+
+# 3. Create the PostgreSQL database
+sudo -u postgres psql
+# CREATE DATABASE your_database_name;
+# CREATE USER your_user WITH PASSWORD 'your_password';
+# GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_user;
+# GRANT ALL PRIVILEGES ON SCHEMA public TO your_user;
+# \q
+
+# 4. Start Airflow
+export AIRFLOW_HOME=$(pwd)/airflow_home
+airflow standalone
+
+# 5. Trigger the pipeline
+# Via the web UI at localhost:8080, or via terminal:
+airflow dags trigger fashion_retail_pipeline
+```
+
+Once the DAG completes successfully, the 5 tables (`dim_customer`, `dim_product`, `dim_channel`, `dim_date`, `fact_sales`) will be available in PostgreSQL, ready for querying via `sql/reports.sql`.
 
 ---
 
