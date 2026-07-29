@@ -138,9 +138,8 @@ erDiagram
 
 # Star Schema
 
-```markdown
 ![Star Schema](docs/star_schema.svg)
-```
+
 
 ---
 
@@ -161,12 +160,11 @@ Pipeline tasks:
 
 
 
-```markdown
+
 ![Airflow Graph](docs/airflow_graph.png)
-```
-```markdown
+
 ![Airflow DAG](docs/airflow1.png)
-```
+
 
 ---
 
