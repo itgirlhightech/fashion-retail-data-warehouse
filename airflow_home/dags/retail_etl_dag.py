@@ -66,7 +66,7 @@ def fashion_retail_pipeline():
         for nome, tabelas in tabelas.items():
             caminho = os.path.join(TEMP_DIR, f"{nome}.pkl")
             with open(caminho, "wb") as f:
-                pickle.dump(tabela, f)
+                pickle.dump(tabelas, f)
             caminhos[nome] = caminho
 
         return caminhos

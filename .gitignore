@@ -1,2 +1,8 @@
-.env
 airflow_venv/
+__pycache__/
+*.pyc
+.env
+airflow_home/logs/
+airflow_home/*.db
+airflow_home/*.db-shm
+airflow_home/*.db-wal
