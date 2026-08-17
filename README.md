@@ -209,6 +209,11 @@ Pipeline tasks:
 
 ---
 
+# Sales Overview Dashboard
+
+![Dash](docs/dahs.png)
+
+---
 
 # Data Warehouse Model
 
