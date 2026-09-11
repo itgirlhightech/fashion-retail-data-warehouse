@@ -8,12 +8,13 @@ End-to-end Data Engineering project that builds a Data Warehouse for a fashion r
 
 This project demonstrates the complete lifecycle of a modern data engineering solution:
 
-- Extract data from multiple CSV files.
-- Transform and clean datasets using Python and Pandas.
-- Build dimension and fact tables.
-- Load the processed data into a PostgreSQL Data Warehouse.
-- Orchestrate the ETL pipeline using Apache Airflow.
-- Generate analytical SQL reports for business insights.
+* Extract data from multiple CSV files.
+* Transform and clean datasets using Python and Pandas.
+* Build dimension and fact tables.
+* Load the processed data into a PostgreSQL Data Warehouse.
+* Orchestrate the ETL pipeline using Apache Airflow.
+* Containerize the data engineering environment using Docker Compose.
+* Generate analytical SQL reports for business insights.
 
 The objective is to simulate a real-world retail analytics environment while applying data engineering best practices.
 
@@ -21,14 +22,16 @@ The objective is to simulate a real-world retail analytics environment while app
 
 ## Tech Stack
 
-- Python 3.12
-- Pandas
-- PostgreSQL
-- Apache Airflow
-- SQL
-- SQLAlchemy
-- Python-dotenv
-- Git & GitHub
+* Python 3.12
+* Pandas
+* PostgreSQL
+* Apache Airflow
+* Docker
+* Docker Compose
+* SQL
+* SQLAlchemy
+* Python-dotenv
+* Git & GitHub
 
 ---
 
@@ -36,6 +39,7 @@ The objective is to simulate a real-world retail analytics environment while app
 
 ```text
 fashion-retail-data-warehouse/
+
 │
 ├── airflow_home/
 │   └── dags/
@@ -58,49 +62,43 @@ fashion-retail-data-warehouse/
 │   ├── dimensions.py
 │   └── facts.py
 │
+├── docker-compose.yaml
 ├── README.md
 └── requirements.txt
 ```
 
 ---
 
-
 ## How to Run
 
 ```bash
-# 1. Clone the repository and set up the virtual environment
+# 1. Clone the repository
 git clone https://github.com/itgirlhightech/fashion-retail-data-warehouse.git
 cd fashion-retail-data-warehouse
-python -m venv airflow_venv
-source airflow_venv/bin/activate
-pip install -r requirements.txt
 
-# 2. Set up environment variables
-# Create a .env file in the project root with:
-# DB_USER=your_user
-# DB_PASSWORD=your_password
-# DB_HOST=localhost
-# DB_PORT=5432
-# DB_NAME=your_database_name
+# 2. Configure environment variables
+# Create a .env file in the project root with the required variables.
 
-# 3. Create the PostgreSQL database
-sudo -u postgres psql
-# CREATE DATABASE your_database_name;
-# CREATE USER your_user WITH PASSWORD 'your_password';
-# GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_user;
-# GRANT ALL PRIVILEGES ON SCHEMA public TO your_user;
-# \q
+# 3. Start the environment with Docker Compose
+docker compose up -d
 
-# 4. Start Airflow
-export AIRFLOW_HOME=$(pwd)/airflow_home
-airflow standalone
-
-# 5. Trigger the pipeline
-# Via the web UI at localhost:8080, or via terminal:
-airflow dags trigger fashion_retail_pipeline
+# 4. Check running containers
+docker compose ps
 ```
 
+Access Apache Airflow at:
+
+`http://localhost:8080`
+
+From the Airflow web UI, trigger the `fashion_retail_pipeline` DAG.
+
 Once the DAG completes successfully, the 5 tables (`dim_customer`, `dim_product`, `dim_channel`, `dim_date`, `fact_sales`) will be available in PostgreSQL, ready for querying via `sql/reports.sql`.
+
+To stop the environment:
+
+```bash
+docker compose down
+```
 
 ---
 
@@ -110,6 +108,7 @@ Once the DAG completes successfully, the 5 tables (`dim_customer`, `dim_product`
 flowchart LR
 
 A[Raw CSV Files]
+
 --> B[Extract]
 
 B --> C[Transform]
@@ -123,10 +122,11 @@ D --> F[(PostgreSQL)]
 E --> F
 
 F --> G[Apache Airflow]
-
 ```
+
 ```mermaid
 erDiagram
+
     FACT_SALES {
         int sale_id
         int item_id
@@ -181,7 +181,6 @@ erDiagram
 
 ![Star Schema](docs/star_schema.svg)
 
-
 ---
 
 # Apache Airflow DAG
@@ -199,13 +198,9 @@ Pipeline tasks:
 
 # Airflow Execution
 
-
-
-
 ![Airflow Graph](docs/airflow_graph.png)
 
 ![Airflow DAG](docs/airflow1.png)
-
 
 ---
 
@@ -221,29 +216,27 @@ The dimensional model consists of:
 
 ### Dimensions
 
-- dim_customer
-- dim_product
-- dim_channel
-- dim_date
+* dim_customer
+* dim_product
+* dim_channel
+* dim_date
 
 ### Fact
 
-- fact_sales
+* fact_sales
 
 This structure enables fast analytical queries while reducing redundancy.
-
 
 ---
 
 # Future Improvements
 
-- Docker support
-- Automated testing
-- BI dashboard integration
-- Incremental loading
-- Logging improvements
-- CI/CD with GitHub Actions
-- Cloud deployment (AWS)
+* Automated testing
+* BI dashboard integration
+* Incremental loading
+* Logging improvements
+* CI/CD with GitHub Actions
+* Cloud deployment (AWS)
 
 ---
 
@@ -251,15 +244,16 @@ This structure enables fast analytical queries while reducing redundancy.
 
 This project demonstrates practical experience with:
 
-- ETL development
-- Data Warehousing
-- Star Schema modeling
-- PostgreSQL
-- Apache Airflow
-- SQL Analytics
-- Python for Data Engineering
-- Workflow orchestration
-- Git version control
+* ETL development
+* Data Warehousing
+* Star Schema modeling
+* PostgreSQL
+* Apache Airflow
+* Docker and containerization
+* SQL Analytics
+* Python for Data Engineering
+* Workflow orchestration
+* Git version control
 
 ---
 
@@ -268,6 +262,7 @@ This project demonstrates practical experience with:
 This project uses the **European Fashion Store Multi-Table Dataset** available on Kaggle.
 
 **Source:**
+
 https://www.kaggle.com/datasets/joycemara/european-fashion-store-multitable-dataset
 
 The dataset simulates transactions from an online fashion retailer and includes information about customers, products, orders, channels and inventory. It was adapted for building a dimensional model, ETL pipeline and analytical warehouse.
