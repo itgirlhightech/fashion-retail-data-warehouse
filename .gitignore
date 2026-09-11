@@ -6,3 +6,4 @@ airflow_home/logs/
 airflow_home/*.db
 airflow_home/*.db-shm
 airflow_home/*.db-wal
+requirements.txt
